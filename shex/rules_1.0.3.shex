@@ -104,6 +104,7 @@ saflux:SourceOfInformation {
       rdf:type [ crm:E55_Type ] ;
       crm:P127_has_broader_term   { rdf:type [ crm:E55_Type ] } ;
       crm:P127i_has_narrower_term { rdf:type [ crm:E55_Type ] } ;
+      saflux:value  @saflux:CL6_TypeOfSource 
   } ? ;
   crm:P70i_is_documented_in {
     rdf:type [ crm:E31_Document ] ;
