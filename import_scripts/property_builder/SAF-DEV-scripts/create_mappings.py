@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 from wikidataintegrator import wdi_core, wdi_login, wdi_config
 from getpass import getpass
 import pandas as pd
+import json
+import os
 
 wikibase = os.environ["WIKIBASE_HOST"]
 api = wikibase+":8080/w/api.php"
@@ -18,39 +17,14 @@ WBPASS = os.environ["MW_ADMIN_PASS"]
 login = wdi_login.WDLogin(WBUSER, WBPASS, mediawiki_api_url=api)
 localEntityEngine = wdi_core.WDItemEngine.wikibase_item_engine_factory(api,sparql)
 
-
-# In[4]:
-
-
 df = pd.read_excel("../DM_SAF/DM_SAF_vers.1.0.3_andra.xls", sheet_name="CIDOC", header=2)
-
-
-# In[5]:
-
-
 df2 = df[~df["English"].isnull()]
-
-
-# In[6]:
-
-
 qid = dict()
 query = "SELECT ?item ?label WHERE {?item rdfs:label ?label }"
 wdi_core.WDItemEngine.execute_sparql_query(query, as_dataframe = True, endpoint=sparql)
 for index, row in wdi_core.WDItemEngine.execute_sparql_query(query, as_dataframe = True, endpoint=sparql).iterrows():
     qid[row["label"]] =row["item"].replace(entityUri, "")
 
-
-# In[7]:
-
-
-df2
-
-
-# In[8]:
-
-
-import json
 done = []
 for index, row in df2.iterrows():
     if row["English"].strip() in qid.keys():
@@ -67,22 +41,11 @@ for index, row in df2.iterrows():
             print("error", e)
             continue
 
-
-# # DM_rules properties not part of the sourced CIDOC CRM
-# This is temporarily fix and needs to be revisited once settled on a stable version of CIDOC CRM
-
-# In[23]:
-
-
 propertyID = dict()
+## TODO adapt prefix namespaces to align with local wikibase at SAFLux
 query = "PREFIX wdt: <http://{}.wiki.opencura.com/prop/direct/> SELECT ?item ?label WHERE {{?item rdfs:label ?label }}".format(wbstack)
 for index, row in wdi_core.WDItemEngine.execute_sparql_query(query, as_dataframe = True, endpoint=sparql).iterrows():
     propertyID[row["label"]] =row["item"].replace(entityUri, "")
-    
-
-
-# In[33]:
-
 
 missing_classes = ['R8 consists of', "E13 Attribute assignement", 'E52 Time-span', 'P48 has prefered identifier', 'P107 has current or former member of']
 for missing_class in missing_classes:
@@ -92,4 +55,3 @@ for missing_class in missing_classes:
     item = localEntityEngine(new_item=True, data=statements)
     item.set_label(missing_class , lang="en")
     print(item.write(login))
-

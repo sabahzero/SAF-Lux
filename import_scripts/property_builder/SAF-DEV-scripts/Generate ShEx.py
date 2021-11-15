@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import rdflib
 from wikidataintegrator import wdi_core, wdi_login
+import os
 from getpass import getpass
 import pandas as pd
 import sys
@@ -19,12 +17,15 @@ wikibase = os.environ["WIKIBASE_HOST"]
 api = wikibase+":8080/w/api.php"
 sparql = wikibase+":9999/bigdata/namespace/wdq/sparql"
 entityUri = wikibase.replace("https:", "http:")+"entity/"
-
+cidocUri = "http://www.cidoc-crm.org/cidoc-crm/"
 WBUSER = os.environ["MW_ADMIN_NAME"]
 WBPASS = os.environ["MW_ADMIN_PASS"]
 login = wdi_login.WDLogin(WBUSER, WBPASS, mediawiki_api_url=api)
+localEntityEngine = wdi_core.WDItemEngine.wikibase_item_engine_factory(api,sparql)
 
 qid = dict()
+
+## TODO adapt prefix namespaces to align with local wikibase at SAFLux
 query = "PREFIX wdt: <http://{}.wiki.opencura.com/prop/direct/> SELECT ?item ?label WHERE {{?item rdfs:label ?label }}".format(wbstack)
 wdi_core.WDItemEngine.execute_sparql_query(query, as_dataframe = True, endpoint=sparql)
 for index, row in wdi_core.WDItemEngine.execute_sparql_query(query, as_dataframe = True, endpoint=sparql).iterrows():

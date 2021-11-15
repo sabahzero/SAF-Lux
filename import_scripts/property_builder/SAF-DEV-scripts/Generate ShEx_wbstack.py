@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import rdflib
 from wikidataintegrator import wdi_core, wdi_login
 import os
