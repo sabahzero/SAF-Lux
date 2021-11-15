@@ -1,4 +1,5 @@
 # CHANGE LOG
+# 2021-11-12 Added CL6 Type of source, closed list for primary or secondary source
 # 2021-09-27 Replaced afl alias by saflux for consistency with examples
 # 2021-09-20 Embedded labels as shape references so the possible values can be validated also
 # 2021-09-17 Changed the values in closed lists to be resources instead of literals
@@ -103,6 +104,7 @@ saflux:SourceOfInformation {
       rdf:type [ crm:E55_Type ] ;
       crm:P127_has_broader_term   { rdf:type [ crm:E55_Type ] } ;
       crm:P127i_has_narrower_term { rdf:type [ crm:E55_Type ] } ;
+      saflux:value  @saflux:CL6_TypeOfSource 
   } ? ;
   crm:P70i_is_documented_in {
     rdf:type [ crm:E31_Document ] ;
@@ -125,6 +127,11 @@ saflux:CL4_Gender [
   saflux:male          # male
   saflux:female        # female
   saflux:notApplicable # not applicable
+]
+
+saflux:CL6_TypeOfSource [
+  saflux:PrimarySource    # Primary Source
+  saflux:SecondarySource  # Secondary Source
 ]
 
 saflux:Name {
@@ -312,7 +319,6 @@ saflux:professionLabel [ saflux:profession ] AND {
 saflux:activityLabel [ saflux:activity ] AND {
   rdfs:label [ "Aktivität"@de "activity"@en "activité"@fr ] *
 }
-
 
 saflux:sourceInformationTypeLabel [ saflux:sourceOfInformation ] AND {
   rdfs:label [ "Quellentyp"@de "type of source"@en "type de source d'information"@fr ] *
