@@ -6,13 +6,13 @@ from getpass import getpass
 import pandas as pd
 import os
 
-#wbstack = os.environ["WBSTACK"]
-wikibase = "https://luxsaf-demo.micel.io/"
-#wikibase = "https://{}.wiki.opencura.com/".format(wbstack)
-api = "https://luxsaf-demo.micel.io/w/api.php"
-sparql = "https://luxsaf-demo.micel.io/query/sparql"
+wbstack = "wbpython"
+wikibase = "https://{}.wiki.opencura.com/".format(wbstack)
+api = "https://{}.wiki.opencura.com/w/api.php".format(wbstack)
+sparql = "https://{}.wiki.opencura.com/query/sparql".format(wbstack)
 entityUri = wikibase.replace("https:", "http:")+"entity/"
-WBUSER = os.environ["MW_ADMIN_NAME"]
+
+WBUSER = "Andrawaag"
 WBPASS = os.environ["MW_ADMIN_PASS"]
 login = wdi_login.WDLogin(WBUSER, WBPASS, mediawiki_api_url=api)
 localEntityEngine = wdi_core.WDItemEngine.wikibase_item_engine_factory(api,sparql)

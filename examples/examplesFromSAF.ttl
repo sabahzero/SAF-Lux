@@ -1,5 +1,5 @@
 prefix :     <http://example.org/>
-prefix afl:  <http://data.culture.lu/ns/saf/>
+prefix saflux:  <http://data.culture.lu/ns/saf/>
 prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/>
 prefix efr:  <http://iflastandards.info/ns/fr/frbr/frbroo/>
 prefix edtf: <http://id.loc.gov/datatypes/edtf/>
@@ -22,31 +22,31 @@ prefix xsd:  <http://www.w3.org/2001/XMLSchema#>
 #   crm:P2_has_type [
 #     rdf:type crm:E55_Type ;
 #     rdfs:label "type of source"@en ;
-#     afl:value "to do"
+#     saflux:value "to do"
 #   ] ;
-#   afl:value "lb.wikipedia.org, consulté le 21.02.2020" 
+#   saflux:value "lb.wikipedia.org, consulté le 21.02.2020" 
 # ] ;
 # crm:P70i_is_documented_in [
 #  rdf:type  crm:E31_Document ; 
-#  afl:value <https://lb.wikipedia.org/wiki/Charlotte_vu_L%C3%ABtzebuerg> 
+#  saflux:value <https://lb.wikipedia.org/wiki/Charlotte_vu_L%C3%ABtzebuerg> 
 # ] ;   
  crm:P48_has_prefered_identifier [
   rdf:type                       crm:E42_Identifier    ;
-  afl:label                      afl:id          ;
+  saflux:label                      saflux:id          ;
   crm:P2_has_type                :isni                 ;
-  afl:value                      "0000 0003 8244 0415" 
+  saflux:value                      "0000 0003 8244 0415" 
  ] ;
 crm:P48_has_prefered_identifier [
  rdf:type                        crm:E42_Identifier    ;
- afl:label                       afl:id                ;
+ saflux:label                       saflux:id                ;
  crm:P2_has_type                 :viaf                 ;
- afl:value                       "264499494"           
+ saflux:value                       "264499494"           
 ] ;
 crm:P67i_is_refered_to_by [
   rdf:type crm:E89_Propositional_object ;
   crm:P48_has_prefered_identifier [
     rdf:type crm:E42_Identifier ;
-    afl:value "Example 1"
+    saflux:value saflux:LU-BNL
   ]
 ]
 .
@@ -60,36 +60,36 @@ crm:P67i_is_refered_to_by [
                                 :alt_e1_4 .
 
 :name_e1_symbol rdf:type crm:E90_Symbolic_Object ;
-   afl:label afl:name ;
-   crm:P2_has_type afl:directType ;
-   afl:value "Charlotte" .
+   saflux:label saflux:name ;
+   crm:P2_has_type saflux:directType ;
+   saflux:value "Charlotte" .
 
 :title_e1_symbol rdf:type crm:E90_Symbolic_Object ;
-   afl:label afl:title ;
-   crm:P2_has_type afl:free_text ;
-   afl:value "Grande-Duchesse de Luxembourg" 
+   saflux:label saflux:title ;
+   crm:P2_has_type saflux:free_text ;
+   saflux:value "Grande-Duchesse de Luxembourg" 
    .
 
 :alt_e1_1 rdf:type crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeTitle ;
-    crm:P2_has_type afl:free_text ;
-    afl:value "Duchesse de Nassau" 
+    saflux:label saflux:alternativeTitle ;
+    crm:P2_has_type saflux:free_text ;
+    saflux:value "Duchesse de Nassau" 
   ] .
 :alt_e1_2 rdf:type crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeTitle ;
-    crm:P2_has_type afl:free_text ;
-    afl:value "Großherzogin von Luxemburg" 
+    saflux:label saflux:alternativeTitle ;
+    crm:P2_has_type saflux:free_text ;
+    saflux:value "Großherzogin von Luxemburg" 
  ] .
 :alt_e1_3 rdf:type crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeTitle ;
-    crm:P2_has_type afl:free_text ;
-    afl:value "Herzogin von Nassau" 
+    saflux:label saflux:alternativeTitle ;
+    crm:P2_has_type saflux:free_text ;
+    saflux:value "Herzogin von Nassau" 
  ] .
 :alt_e1_4 rdf:type crm:E41_Appellation ;
    efr:R8_consists_of :alt_name_e1_4 .
@@ -99,7 +99,7 @@ crm:P67i_is_refered_to_by [
   crm:P4_has_time_span [
     rdf:type   crm:E52_Time-Span ;
     rdfs:label "date of birth" ;
-    afl:value  "1896-01-23" 
+    saflux:value  "1896-01-23" 
   ] . 
 
 :death_e1 rdf:type crm:E69_Death ;
@@ -107,32 +107,32 @@ crm:P67i_is_refered_to_by [
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
    rdfs:label "date of death" ;
-   afl:value  "1985-07-09" 
+   saflux:value  "1985-07-09" 
   ]
 .
 
 :activity_e1 rdf:type crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
+   saflux:label  saflux:activity ;
   ] ;
-  afl:value  "Grande-Duchesse de Luxembourg" ;
+  saflux:value  "Grande-Duchesse de Luxembourg" ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1919"^^edtf:EDTF ;
-   afl:label  afl:beginningDate 
+   saflux:value  "1919"^^edtf:EDTF ;
+   saflux:label  saflux:beginningDate 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1964"^^edtf:EDTF ;
-   afl:label  afl:endDate
+   saflux:value  "1964"^^edtf:EDTF ;
+   saflux:label  saflux:endDate
   ]
 . 
 
 :alt_name_e1_4 rdf:type crm:E90_Symbolic_Object ;
- afl:label afl:alternativeName ;
- crm:P2_has_type afl:indirect ;
- afl:value "Nassau, Charlotte Adelgonde Élisabeth Marie Wilhelmine de" 
+ saflux:label saflux:alternativeName ;
+ crm:P2_has_type saflux:indirect ;
+ saflux:value "Nassau, Charlotte Adelgonde Élisabeth Marie Wilhelmine de" 
  .    
 
 :e2 rdf:type crm:E21_Person ;
@@ -143,7 +143,7 @@ crm:P67i_is_refered_to_by [
   crm:P4_has_time_span [
     rdf:type   crm:E52_Time-Span ;
     rdfs:label "date of birth" ;
-    afl:value  "1928-10-30" 
+    saflux:value  "1928-10-30" 
   ] 
  ] ;
  crm:P2_has_type :male ; 
@@ -151,18 +151,18 @@ crm:P67i_is_refered_to_by [
   rdf:type    crm:E7_Activity;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:profession ;
-   afl:value  "Entrepreneur" 
+   saflux:label  saflux:profession ;
+   saflux:value  "Entrepreneur" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1919"^^edtf:EDTF ;
-   afl:label  afl:beginningDate
+   saflux:value  "1919"^^edtf:EDTF ;
+   saflux:label  saflux:beginningDate
   ];
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1964"^^edtf:EDTF ;
-   afl:label  afl:endDate
+   saflux:value  "1964"^^edtf:EDTF ;
+   saflux:label  saflux:endDate
   ]
  ] ;
 # crm:P14i_performed [
@@ -170,11 +170,11 @@ crm:P67i_is_refered_to_by [
 #  crm:P2_has_type  [
 #   rdf:type   crm:E55_Type           ;
 #   rdfs:label "Type of activity"     ;
-#   afl:value  "Directeur de l'entreprise Cloos s.a." 
+#   saflux:value  "Directeur de l'entreprise Cloos s.a." 
 #  ] ;
 #  crm:P4_has_time_span [
 #   rdf:type   crm:E52_Time-Span ;
-#  afl:value  "1951-1994"       
+#  saflux:value  "1951-1994"       
 #  ]
 # ] ;
 # crm:P14i_performed [
@@ -182,47 +182,47 @@ crm:P67i_is_refered_to_by [
 #  crm:P2_has_type  [
 #   rdf:type   crm:E55_Type           ;
 #   rdfs:label "Type of activity"     ;
-#   afl:value  "Artiste-peintre autodidacte" 
+#   saflux:value  "Artiste-peintre autodidacte" 
 #  ] ;
 #  crm:P4_has_time_span [
 #   rdf:type   crm:E52_Time-Span ;
-#   afl:value  "1994-" 
+#   saflux:value  "1994-" 
 #  ]
 # ] ;
  crm:P70i_is_documented_in [     # P73 (wikibase)
    rdf:type  crm:E31_Document ; 
-   afl:value "lb.wikipedia.org, consulté le 26.01.2020" 
+   saflux:value "lb.wikipedia.org, consulté le 26.01.2020" 
  ] ; 
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "Ausstellung Félix Boy Cloos, consulté le 26.01.2020" 
+   saflux:value "Ausstellung Félix Boy Cloos, consulté le 26.01.2020" 
  ] ; 
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "http://www.dittmar-lauer.de/cloosausstellung.htm" 
+   saflux:value "http://www.dittmar-lauer.de/cloosausstellung.htm" 
  ] ; 
  crm:P48_has_prefered_identifier [
   rdf:type                        crm:E42_Identifier ;
-  afl:label                       afl:id ;
+  saflux:label                       saflux:id ;
   crm:P2_has_type                 :isni ;
-  afl:value                       "0000 0004 8298 7004" 
+  saflux:value                       "0000 0004 8298 7004" 
  ] 
 .
 
 :name_e2 rdf:type crm:E41_Appellation ;
   efr:R8_consists_of [
    rdf:type crm:E90_Symbolic_Object ;
-   afl:label afl:name ;
-   crm:P2_has_type afl:indirect ;
-   afl:value "Cloos, Boy" 
+   saflux:label saflux:name ;
+   crm:P2_has_type saflux:indirect ;
+   saflux:value "Cloos, Boy" 
   ] ;
  crm:P139_has_alternative_form [
    rdf:type crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeName ;
-    crm:P2_has_type afl:indirect ;
-    afl:value "Cloos, Félix" 
+    saflux:label saflux:alternativeName ;
+    crm:P2_has_type saflux:indirect ;
+    saflux:value "Cloos, Félix" 
    ] ;
  ] .
  
@@ -235,7 +235,7 @@ crm:P67i_is_refered_to_by [
   crm:P4_has_time_span [
     rdf:type   crm:E52_Time-Span ;
     rdfs:label "date of birth" ;
-    afl:value  "1550?"^^edtf:EDTF  
+    saflux:value  "1550?"^^edtf:EDTF  
   ] 
  ] ;
  crm:P100_died_in [
@@ -244,7 +244,7 @@ crm:P67i_is_refered_to_by [
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
    rdfs:label "date of death" ;
-   afl:value  "1591-08-31"^^edtf:EDTF
+   saflux:value  "1591-08-31"^^edtf:EDTF
   ]
  ] ;
  crm:P2_has_type :male ; 
@@ -252,84 +252,84 @@ crm:P67i_is_refered_to_by [
   rdf:type    crm:E7_Activity        ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:profession ;
-   afl:value  "Juriste" 
+   saflux:label  saflux:profession ;
+   saflux:value  "Juriste" 
   ] 
  ] ;
  crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:profession ;
-   afl:value  "Professeur d'université" 
+   saflux:label  saflux:profession ;
+   saflux:value  "Professeur d'université" 
   ] 
  ] ;
  crm:P14_performed [
   rdf:type    crm:E7_Activity        ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Président du Conseil provincial des Pays et Duché de Luxembourg et Comté de Chiny" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Président du Conseil provincial des Pays et Duché de Luxembourg et Comté de Chiny" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1574-1591"^^edtf:EDTF       
+   saflux:value  "1574-1591"^^edtf:EDTF       
   ]
  ] ;
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "Lascombes, François, Chronik der Stadt Luxemburg (1444-1684), 1976, p. 405" 
+   saflux:value "Lascombes, François, Chronik der Stadt Luxemburg (1444-1684), 1976, p. 405" 
  ] ; 
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "http://www.a-z.lu/BIBNET:ALEPH_LUX01000029125" 
+   saflux:value "http://www.a-z.lu/BIBNET:ALEPH_LUX01000029125" 
  ] ; 
  crm:P48_has_prefered_identifier [
   rdf:type                        crm:E42_Identifier    ;
-  afl:label                       afl:id ;
+  saflux:label                       saflux:id ;
   crm:P2_has_type                 :isni ;
-  afl:value                       "0000 0000 8204 4322" 
+  saflux:value                       "0000 0000 8204 4322" 
  ] ;
 crm:P48_has_prefered_identifier [
  rdf:type                        crm:E42_Identifier ;
- afl:label                       afl:id ;
+ saflux:label                       saflux:id ;
  crm:P2_has_type                 :viaf ;
- afl:value                       "18863051"           
+ saflux:value                       "18863051"           
 ] 
 .
 
 :name_e3 rdf:type crm:E41_Appellation ;
   efr:R8_consists_of [
    rdf:type crm:E90_Symbolic_Object ;
-   afl:label afl:name ;
-   crm:P2_has_type afl:indirect ;
-   afl:value "Aa, Petrus van der" 
+   saflux:label saflux:name ;
+   crm:P2_has_type saflux:indirect ;
+   saflux:value "Aa, Petrus van der" 
   ] ;
  crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeName ;
-    crm:P2_has_type afl:indirect ;
-    afl:value "Vanderanus, Petrus" 
+    saflux:label saflux:alternativeName ;
+    crm:P2_has_type saflux:indirect ;
+    saflux:value "Vanderanus, Petrus" 
    ]
   ] ;
  crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeName ;
-    crm:P2_has_type afl:indirect ;
-    afl:value "Aa, Pierre van der" 
+    saflux:label saflux:alternativeName ;
+    crm:P2_has_type saflux:indirect ;
+    saflux:value "Aa, Pierre van der" 
    ]
   ] ; 
   crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeName ;
-    crm:P2_has_type afl:indirect ;
-    afl:value "Van der Aa, Petrus" 
+    saflux:label saflux:alternativeName ;
+    crm:P2_has_type saflux:indirect ;
+    saflux:value "Van der Aa, Petrus" 
    ]
   ] .
 
@@ -341,7 +341,7 @@ crm:P48_has_prefered_identifier [
   crm:P4_has_time_span [
     rdf:type   crm:E52_Time-Span ;
     rdfs:label "date of birth" ;
-    afl:value  "0658?"^^edtf:EDTF 
+    saflux:value  "0658?"^^edtf:EDTF 
   ] 
  ] ;
  crm:P100_died_in [
@@ -350,7 +350,7 @@ crm:P48_has_prefered_identifier [
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
    rdfs:label "date of death" ;
-   afl:value  "0738?"^^edtf:EDTF 
+   saflux:value  "0738?"^^edtf:EDTF 
   ]
  ] ;
  crm:P2_has_type :male ; 
@@ -358,49 +358,49 @@ crm:P48_has_prefered_identifier [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Missionnaire anglo-saxon" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Missionnaire anglo-saxon" 
   ] ;
  ] ;
  crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Fondateur du monastère d'Echternach au Luxembourg" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Fondateur du monastère d'Echternach au Luxembourg" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "698-"^^edtf:EDTF 
+   saflux:value  "698-"^^edtf:EDTF 
   ]
  ] ;
  crm:P14_performed [
   rdf:type    crm:E7_Activity        ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type           ;
-   afl:label  afl:activity     ;
-   afl:value  "Premier évêque d'Utrecht" 
+   saflux:label  saflux:activity     ;
+   saflux:value  "Premier évêque d'Utrecht" 
   ] ;
  ] ;
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "Deutsche Biographie en ligne, consulté le 31.07.2019" 
+   saflux:value "Deutsche Biographie en ligne, consulté le 31.07.2019" 
  ] ; 
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "https://www.deutsche-biographie.de/sfz85687.html#adbcontent" 
+   saflux:value "https://www.deutsche-biographie.de/sfz85687.html#adbcontent" 
  ] ; 
  crm:P48_has_prefered_identifier [
   rdf:type                        crm:E42_Identifier ;
-  afl:label                      afl:id ;
+  saflux:label                      saflux:id ;
   crm:P2_has_type                 :isni ;
-  afl:value                       "0000 0003 8236 247X" 
+  saflux:value                       "0000 0003 8236 247X" 
  ] ;
 crm:P48_has_prefered_identifier [
  rdf:type                        crm:E42_Identifier ;
- afl:label                       afl:id ;
+ saflux:label                       saflux:id ;
  crm:P2_has_type                 :viaf ;
- afl:value                       "265587657"           
+ saflux:value                       "265587657"           
 ] 
 .
 
@@ -408,44 +408,44 @@ crm:P48_has_prefered_identifier [
 :name_e4 rdf:type crm:E41_Appellation ;
   efr:R8_consists_of [
    rdf:type crm:E90_Symbolic_Object ;
-   afl:label afl:name ;
-   crm:P2_has_type afl:direct ;
-   afl:value "Willibrordus" 
+   saflux:label saflux:name ;
+   crm:P2_has_type saflux:direct ;
+   saflux:value "Willibrordus" 
   ] ;
  crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeName ;
-    crm:P2_has_type afl:indirect ;
-    afl:value "Clemens Willibrordus" 
+    saflux:label saflux:alternativeName ;
+    crm:P2_has_type saflux:indirect ;
+    saflux:value "Clemens Willibrordus" 
    ]
   ] ;
  crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeTitle ;
-    crm:P2_has_type afl:free_text ;
-    afl:value "Ultraiectensis" 
+    saflux:label saflux:alternativeTitle ;
+    crm:P2_has_type saflux:free_text ;
+    saflux:value "Ultraiectensis" 
    ]
  ] ; 
  crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeTitle ;
-    crm:P2_has_type afl:free_text ;
-    afl:value "Traiectensis" 
+    saflux:label saflux:alternativeTitle ;
+    crm:P2_has_type saflux:free_text ;
+    saflux:value "Traiectensis" 
    ]
  ] ; 
  crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeTitle ;
-    crm:P2_has_type afl:free_text ;
-    afl:value "Sanctus" 
+    saflux:label saflux:alternativeTitle ;
+    crm:P2_has_type saflux:free_text ;
+    saflux:value "Sanctus" 
    ]
  ]
 .
@@ -455,17 +455,17 @@ crm:P48_has_prefered_identifier [
   rdf:type crm:E41_Appellation ;
   efr:R8_consists_of [
    rdf:type crm:E90_Symbolic_Object ;
-   afl:label afl:name ;
-   crm:P2_has_type afl:indirect ;
-   afl:value "Barthel, Josy" 
+   saflux:label saflux:name ;
+   crm:P2_has_type saflux:indirect ;
+   saflux:value "Barthel, Josy" 
   ] ;
   crm:P139_has_alternative_form [
    rdf:type           crm:E41_Appellation ;
    efr:R8_consists_of [
     rdf:type crm:E90_Symbolic_Object ;
-    afl:label afl:alternativeName ;
-    crm:P2_has_type afl:indirect ;
-    afl:value "Barthel, Joseph" 
+    saflux:label saflux:alternativeName ;
+    crm:P2_has_type saflux:indirect ;
+    saflux:value "Barthel, Joseph" 
    ]
   ]
  ] ;
@@ -475,7 +475,7 @@ crm:P48_has_prefered_identifier [
   crm:P4_has_time_span [
     rdf:type   crm:E52_Time-Span ;
     rdfs:label "date of birth" ;
-    afl:value  "1927-04-24"^^edtf:EDTF 
+    saflux:value  "1927-04-24"^^edtf:EDTF 
   ] 
  ] ;
  crm:P100_died_in [
@@ -484,151 +484,151 @@ crm:P48_has_prefered_identifier [
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
    rdfs:label "date of death" ;
-   afl:value  "1992-07-07" 
+   saflux:value  "1992-07-07" 
   ]
  ] ;
   crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:profession ;
-   afl:value  "Sportif" 
+   saflux:label  saflux:profession ;
+   saflux:value  "Sportif" 
   ] ;
  ] ;
   crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:profession ;
-   afl:value  "Homme politique" 
+   saflux:label  saflux:profession ;
+   saflux:value  "Homme politique" 
   ] ;
  ] ; 
  crm:P14_performed [
   rdf:type    crm:E7_Activity        ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Chimiste au Laboratoire de l'État" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Chimiste au Laboratoire de l'État" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1951-"^^edtf:EDTF 
+   saflux:value  "1951-"^^edtf:EDTF 
   ]
  ] ;
  crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Vainqueur de la course des 1.500 m hommes aux Jeux olympiques d'été à Helsinki" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Vainqueur de la course des 1.500 m hommes aux Jeux olympiques d'été à Helsinki" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1952"^^edtf:EDTF 
+   saflux:value  "1952"^^edtf:EDTF 
   ]
  ] ;
  crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Président de la Fédération luxembourgeoise d’athlétisme (FLA)" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Président de la Fédération luxembourgeoise d’athlétisme (FLA)" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1962"^^edtf:EDTF
+   saflux:value  "1962"^^edtf:EDTF
   ]
  ] ; 
  crm:P14_performed [
   rdf:type    crm:E7_Activity        ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Président du Comité olympique luxembourgeois (COL)" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Président du Comité olympique luxembourgeois (COL)" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1972-1977"^^edtf:EDTF 
+   saflux:value  "1972-1977"^^edtf:EDTF 
   ]
  ] ;  
  crm:P14_performed [
   rdf:type    crm:E7_Activity ;
   crm:P2_has_type  [
    rdf:type   crm:E55_Type ;
-   afl:label  afl:activity ;
-   afl:value  "Ministre des ressorts Transports, Énergie, Environnement, Tourisme, Communication" 
+   saflux:label  saflux:activity ;
+   saflux:value  "Ministre des ressorts Transports, Énergie, Environnement, Tourisme, Communication" 
   ] ;
   crm:P4_has_time_span [
    rdf:type   crm:E52_Time-Span ;
-   afl:value  "1977-1984"^^edtf:EDTF 
+   saflux:value  "1977-1984"^^edtf:EDTF 
   ]
  ] ;   
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "lb.wikipedia.lu, consulté le 29.01.2018" 
+   saflux:value "lb.wikipedia.lu, consulté le 29.01.2018" 
  ] ; 
  crm:P70i_is_documented_in [
    rdf:type  crm:E31_Document ; 
-   afl:value "https://lb.wikipedia.org/wiki/Josy_Barthel" 
+   saflux:value "https://lb.wikipedia.org/wiki/Josy_Barthel" 
  ] ; 
 crm:P48_has_prefered_identifier [
  rdf:type                        crm:E42_Identifier ;
- afl:label                       afl:id ;
+ saflux:label                       saflux:id ;
  crm:P2_has_type                 :viaf ;
- afl:value                       "315524088"           
+ saflux:value                       "315524088"           
 ] 
 .
 
 
 :isni             rdf:type                        crm:E55_Type  ;
-                  afl:label                        afl:idSource ;
-                  afl:value                       "ISNI"       .
+                  saflux:label                    saflux:idSource ;
+                  saflux:value                    saflux:ISNI       .
 :viaf             rdf:type                        crm:E55_Type ;
-                  afl:label                       afl:idSource ;
-                  afl:value                       "VIAF"       .
+                  saflux:label                    saflux:idSource ;
+                  saflux:value                    saflux:VIAF       .
 
 #:afl_authorities  rdf:type                        crm:E32_Authority_document ;
 #                  rdfs:label                     "authority_file" .
 
 :male            rdf:type                         crm:E55_Type ;
-                 afl:label                        afl:gender     ;
-                 afl:value                        afl:male       .
+                 saflux:label                        saflux:gender     ;
+                 saflux:value                        saflux:male       .
 :female          rdf:type                         crm:E55_Type ;
-                 afl:label                        afl:gender     ;
-                 afl:value                        afl:female     .
+                 saflux:label                        saflux:gender     ;
+                 saflux:value                        saflux:female     .
 
 
 :Luxembourg rdf:type crm:E53_Place ;
             rdfs:label "place of birth" ;
-            afl:value "Luxembourg"  .
+            saflux:value "Luxembourg"  .
 
 :Belgique rdf:type crm:E53_Place ;
           rdfs:label "place of birth" ;
-          afl:value "Belgique"  .
+          saflux:value "Belgique"  .
 
 :GrandeBretagne rdf:type crm:E53_Place ;
           rdfs:label "place of birth" ;
-          afl:value "Grande Bretagne"  .
+          saflux:value "Grande Bretagne"  .
 
-afl:directType rdf:type   crm:E55_Type ;
+saflux:directType rdf:type   crm:E55_Type ;
              rdfs:label "Direct order"@en ;
              rdfs:label "Direkte Folge"@de ;
              rdfs:label "ordre direct"@fr  ;
-             afl:value afl:directForm .  
-afl:indirectType rdf:type   crm:E55_Type ;
+             saflux:value saflux:directForm .  
+saflux:indirectType rdf:type   crm:E55_Type ;
              rdfs:label "Indirect order"@en  ;
              rdfs:label "Indirekte Folge"@de ;
              rdfs:label "ordre indirect"@fr ;
-             afl:value afl:indirectForm .             
+             saflux:value saflux:indirectForm .             
 
 # Some values in the rules are "Only roman numbers till XXX"
-afl:controlled_list rdf:type   crm:E55_Type .  
+saflux:controlled_list rdf:type   crm:E55_Type .  
 
-afl:free_text rdf:type crm:E55_Type ;
- afl:value afl:directForm  .  
+saflux:free_text rdf:type crm:E55_Type ;
+ saflux:value saflux:directForm  .  
 
-afl:direct rdf:type crm:E55_Type ;
- afl:value afl:directForm .     
+saflux:direct rdf:type crm:E55_Type ;
+ saflux:value saflux:directForm .     
 
-afl:indirect rdf:type crm:E55_Type ;
- afl:value afl:indirectForm .     
+saflux:indirect rdf:type crm:E55_Type ;
+ saflux:value saflux:indirectForm .     

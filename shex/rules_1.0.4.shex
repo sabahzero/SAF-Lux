@@ -1,0 +1,428 @@
+# CHANGE LOG
+# 2021-11-16 ADDED CL7 External standarrd identifiers (ISNI, VIAF, GND, WikiData, Getty)
+# 2021-11-16 Added CL8 internal standard identifiers (ISIL CODES)
+# 2021-11-12 Added CL6 Type of source, closed list for primary or secondary source
+# 2021-09-27 Replaced afl alias by saflux for consistency with examples
+# 2021-09-20 Embedded labels as shape references so the possible values can be validated also
+# 2021-09-17 Changed the values in closed lists to be resources instead of literals
+# 2021-09-17 saflux namespace set to http://data.culture.lu/ns/saf/ as per issue https://github.com/weso/SAF-Lux/issues/23
+# 2021-09-15 Added start declaration
+# 2021-08-02 Changed namespaces for saflux, crm and efr
+# 2021-02-02 Added some annotations so we can generate RDFS vocabulary from this ShEx
+
+prefix saflux:  <http://data.culture.lu/ns/saf/>
+prefix crm:  <http://www.cidoc-crm.org/cidoc-crm/>
+prefix efr:  <http://iflastandards.info/ns/fr/frbr/frbroo/>
+prefix edtf: <http://id.loc.gov/datatypes/edtf/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix xsd:  <http://www.w3.org/2001/XMLSchema#>
+
+start = @saflux:Person
+
+saflux:Person {
+  rdf:type                        [ crm:E21_Person ]                ;
+  crm:P1_is_identified_by         @saflux:NameAppellation              ;
+  crm:P98_was_born                @saflux:BirthInformation           * ;
+  crm:P100_died_in                @saflux:DeathInformation           * ;
+  crm:P2_has_type                 @saflux:Gender                     ? ;
+  crm:P14i_performed              @saflux:Profession                 * ;
+  crm:P14i_performed              @saflux:Activity                   * ;
+  crm:P3_has_note                 @saflux:Note                       * ;
+  crm:P48_has_prefered_identifier @saflux:ExternalStandardIdentifier * ;
+  crm:P67i_is_refered_to_by       @saflux:InternalStandardIdentifier *
+}
+
+# Administrative fields / Source of data (institution codes)
+saflux:E89_Propositional_object {
+    rdf:type                [ crm:E89_Propositional_object ] ;
+    crm:P94i_was_created_by {
+        rdf:type [ crm:E65_Creation ] ;
+        crm:P14_carried_out_by {
+            rdf:type [ crm:E39_Actor ]  ;
+            crm:P107_has_current_or_former_member_of  {
+                rdf:type   [  crm:E74_Group ]
+            }
+        } +
+    } + ;
+
+    # Date of creation
+    crm:P94i_was_created_by {
+        rdf:type [ crm:E65_Creation ] ;
+        crm:P4_has_time_span {
+            rdf:type  [ crm:E52_Time-span ]  ;
+            saflux:value edtf:EDTF
+        }
+    } ;
+
+    # Date of modification
+    crm:P141i_was_assigned_by {
+        rdf:type [ crm:E13_Attribute_assignment ] ;
+        crm:P4_has_time_span {
+            rdf:type  [ crm:E52_Time-span ] ;
+            saflux:value edtf:EDTF
+        } ;
+
+        # Author of modification
+        crm:P14_carried_out_by {
+            rdf:type [ crm:E39_Actor ]
+        } ;
+
+    } * ;
+
+    # Status of data
+    crm:P2_has_type {
+       rdf:type  [  crm:E55_Type ]  ;
+       saflux:value .
+    }
+}
+
+saflux:NameAppellation {
+    rdf:type                       [ crm:E41_Appellation ]           ;
+    efr:R8_consists_of             @saflux:Name                         ;
+    efr:R8_consists_of             @saflux:Numeration                 ? ;
+    efr:R8_consists_of             @saflux:Title                      ? ;
+    crm:P70i_is_documented_in      @saflux:SourceOfInformation        * ;
+    crm:P139_has_alternative_form  @saflux:AlternativeNameAppellation * ;
+}
+
+saflux:NameType {
+  rdf:type   [ crm:E55_Type ] ;
+  saflux:value  @saflux:CL3_Name_Format
+}
+
+saflux:AlternativeNameAppellation {
+  rdf:type                  [ crm:E41_Appellation ]           ;
+  efr:R8_consists_of        @saflux:AlternativeName            ? ;
+  efr:R8_consists_of        @saflux:AlternativeNumeration      ? ;
+  efr:R8_consists_of        @saflux:AlternativeTitle           ? ;
+  crm:P70i_is_documented_in @saflux:SourceOfInformation        * ;
+}
+
+saflux:SourceOfInformation {
+  rdf:type [ crm:E31_Document ] ;
+  saflux:label @saflux:sourceOfInformationLabel ;
+  crm:P2_has_type {
+      rdf:type [ crm:E55_Type ] ;
+      crm:P127_has_broader_term   { rdf:type [ crm:E55_Type ] } ;
+      crm:P127i_has_narrower_term { rdf:type [ crm:E55_Type ] } ;
+      saflux:value  @saflux:CL6_TypeOfSource 
+  } ? ;
+  crm:P70i_is_documented_in {
+    rdf:type [ crm:E31_Document ] ;
+    saflux:value xsd:string
+  } ?
+}
+
+saflux:CL2_Notes [
+  saflux:internalNote # internal note
+  saflux:publicNote   # public note
+]
+
+saflux:CL3_Name_Format [
+  saflux:directForm   # direct name form
+  saflux:indirectForm # indirect name form
+]
+
+saflux:CL4_Gender [
+  saflux:notKnown      # not known
+  saflux:male          # male
+  saflux:female        # female
+  saflux:notApplicable # not applicable
+]
+
+saflux:CL6_TypeOfSource [
+  saflux:PrimarySource    # Primary Source
+  saflux:SecondarySource  # Secondary Source
+]
+
+saflux:CL7_ExternalStandardIdentifier [
+  saflux:ISNI
+  saflux:VIAF
+  saflux:GND
+  saflux:WikiData
+  saflux:Getty
+]
+
+saflux:CL8_InternalStandardIdentifier [
+  saflux:LU-BNL
+  saflux:LU-SSMN #Assumed
+  saflux:LU-MNHA
+  saflux:LU-MNHN #Assumed
+  saflux:LU-CNL
+  saflux:LU-CNA
+  saflux:LU-CNRA #Assumed
+  saflux:LU-ANLUX
+]
+
+saflux:Name {
+  rdf:type        [ crm:E90_Symbolic_Object ];
+  saflux:label    @saflux:nameLabel ;
+  crm:P2_has_type @saflux:NameType ;
+  saflux:value    xsd:string
+}
+
+saflux:Numeration {
+  rdf:type      [ crm:E90_Symbolic_Object ];
+  saflux:label  @saflux:numerationLabel ;
+  saflux:value  .  # roman numbers
+}
+
+saflux:Title {
+  rdf:type      [ crm:E90_Symbolic_Object ];
+  saflux:label  @saflux:titleLabel ;
+  saflux:value  xsd:string  # free text, Filiation or associated titles
+}
+
+saflux:AlternativeName {
+  rdf:type        [ crm:E90_Symbolic_Object ];
+  saflux:label    @saflux:alternativeNameLabel ;
+  saflux:value    . ;
+  crm:P2_has_type @saflux:NameType
+}
+
+saflux:AlternativeNumeration {
+  rdf:type      [ crm:E90_Symbolic_Object ]    ;
+  saflux:label  @saflux:alternativeNumerationLabel ;
+  saflux:value  .                          # Only roman numbers
+}
+
+saflux:AlternativeTitle {
+  rdf:type      [ crm:E90_Symbolic_Object ] ;
+  saflux:label  @saflux:alternativeTitleLabel ;
+  saflux:value  xsd:string
+}
+
+saflux:Place {
+  rdf:type [ crm:E53_Place ] ;
+}
+
+saflux:TimeSpan {
+  rdf:type [ crm:E52_Time-Span ] ;
+}
+
+saflux:BirthInformation {
+ rdf:type                  [ crm:E67_Birth ]    ;
+ crm:P4_has_time_span      @saflux:TimeSpan ? ;
+ crm:P7_took_place_at      @saflux:Place ? ;
+ crm:P70i_is_documented_in @saflux:SourceOfInformation * ;
+}
+
+saflux:DeathInformation {
+ rdf:type                  [ crm:E69_Death ]    ;
+ crm:P4_has_time_span      @saflux:TimeSpan ? ;
+ crm:P7_took_place_at      @saflux:Place ? ;
+ crm:P70i_is_documented_in @saflux:SourceOfInformation * ;
+}
+
+saflux:Gender {
+ rdf:type  [ crm:E55_Type ] ;
+ saflux:label @saflux:genderLabel ;
+ saflux:value @saflux:CL4_Gender
+}
+
+saflux:Profession {
+  rdf:type                  [ crm:E7_Activity ]    ;
+  crm:P2_has_type           {
+   rdf:type   [ crm:E55_Type ] ;
+   saflux:label  @saflux:professionLabel ;
+   saflux:value  .
+  };
+  # profession - beginning
+  crm:P4_has_time_span      {
+    rdf:type                  [ crm:E52_Time-Span ] ;
+    saflux:label                 @saflux:beginningDateLabel + ;
+    saflux:value                 edtf:EDTF
+  } ?   ;
+
+  # profession - end
+  crm:P4_has_time_span      {
+    rdf:type                  [ crm:E52_Time-Span ] ;
+    saflux:label                 @saflux:endDateLabel ;
+    saflux:value                 edtf:EDTF
+   } ?   ;
+
+}
+
+saflux:Activity {
+    rdf:type                  [ crm:E7_Activity ]    ;
+    crm:P2_has_type           {
+      rdf:type   [ crm:E55_Type ] ;
+      saflux:label  @saflux:activityLabel
+    } ;
+    # activity - beginning
+    crm:P4_has_time_span      {
+      rdf:type                  [ crm:E52_Time-Span ] ;
+      saflux:label                 @saflux:beginningDateLabel ;
+      saflux:value                 edtf:EDTF
+    } ?   ;
+    # activity - end
+    crm:P4_has_time_span      {
+      rdf:type                  [ crm:E52_Time-Span ] ;
+      saflux:label                 @saflux:endDateLabel ;
+      saflux:value                 edtf:EDTF
+    } ?   ;
+    saflux:value .
+}
+
+saflux:Note {
+  rdf:type           [ crm:E62_String ] ;
+  crm:P2_has_type    {
+    rdf:type   [ crm:E55_Type ]  ;
+    saflux:label  @saflux:noteTypeLabel ;
+    saflux:value  @saflux:CL2_Notes
+  } + ;
+}
+
+saflux:ExternalStandardIdentifier {
+ rdf:type [ crm:E42_Identifier ] ;
+ saflux:label @saflux:idLabel ;
+ crm:P2_has_type {
+   rdf:type  [ crm:E55_Type ] ;
+   saflux:label @saflux:idSourceLabel ;
+   saflux:value @saflux:CL7_ExternalStandardIdentifier
+ } ;
+ saflux:value .
+}
+
+saflux:InternalStandardIdentifier {
+  rdf:type [ crm:E89_Propositional_object ] ;
+  crm:P48_has_prefered_identifier {
+    rdf:type [  crm:E42_Identifier ]  ;
+    saflux:value @saflux:CL8_InternalStandardIdentifier
+  } ;
+}
+
+saflux:nameLabel [ saflux:name ] AND {
+ rdfs:label [ "Name"@de "name"@en "nom"@fr ] *
+}
+
+saflux:nameFormatLabel [ saflux:nameFormat ] AND {
+  rdfs:label [ "Namensformat"@de "name format"@en "format du nom"@fr ] *
+}
+
+saflux:numerationLabel [ saflux:numeration ] AND {
+  rdfs:label [ "Numerierung"@de "numeration"@en "numérotation"@fr ] *
+}
+
+saflux:titleLabel [ saflux:title ] AND {
+  rdfs:label [ "Titel"@de 	"title"@en 	"titre"@fr  ] *
+}
+
+saflux:alternativeNameLabel [ saflux:alternativeName ] AND {
+  rdfs:label [ "Alternativname"@de "alternative name"@en "nom alternatif"@fr ] *
+}
+
+saflux:alternativeNumerationLabel [ saflux:alternativeNumeration ] AND {
+  rdfs:label [ "Numerierung"@de "numeration"@en "numérotation"@fr ] *
+}
+
+saflux:alternativeTitleLabel [ saflux:alternativeTitle ] AND {
+  rdfs:label [ "Titel"@de 	"title"@en 	"titre"@fr ] *
+}
+
+saflux:sourceOfInformationLabel [ saflux:sourceOfInformation ] AND {
+  rdfs:label [ "Quelle"@de 	"source of information"@en 	"source d'information"@fr ] *
+}
+
+saflux:sourceOfInformationTypeLabel [ saflux:sourceInformationType ] AND {
+  rdfs:label [ "Quellentyp"@de 	"type of source"@en 	"type de source d'information"@fr ] *
+}
+
+saflux:genderLabel [ saflux:gender ] AND {
+  rdfs:label [ "Geschlecht"@de "gender"@en "sexe"@fr ] *
+}
+
+saflux:professionLabel [ saflux:profession ] AND {
+  rdfs:label [ "Beruf"@de "profession"@en "profession"@fr ] *
+}
+
+saflux:activityLabel [ saflux:activity ] AND {
+  rdfs:label [ "Aktivität"@de "activity"@en "activité"@fr ] *
+}
+
+saflux:sourceInformationTypeLabel [ saflux:sourceOfInformation ] AND {
+  rdfs:label [ "Quellentyp"@de "type of source"@en "type de source d'information"@fr ] *
+}
+
+saflux:noteTypeLabel [saflux:noteType ] AND {
+  rdfs:label [ "Notiztyp"@de "note type"@en "type de note"@fr ] *
+}
+
+saflux:idLabel [ saflux:id ] AND {
+  rdfs:label [ "ID" ] ?
+}
+
+saflux:idSourceLabel [ saflux:idSource] AND {
+  rdfs:label [ "ID Quelle"@de	"ID Source"@en "Source ID"@fr ] *
+}
+
+saflux:beginningDateLabel [ saflux:beginningDate ] AND {
+  rdfs:label [ "Anfangsdatum"@de "date of beginning"@en "date de début"@fr ] *
+}
+
+saflux:endDateLabel [ saflux:endDate ] AND {
+  rdfs:label [ "Enddatum"@de "end date"@en "date de fin"@fr ] *
+}
+
+# This shape is a placeholder to collect annotations that can be used to generate an RDFS vocabulary
+# This feature is experimental because it could be easier to just use an RDFS vocabulary
+saflux:Annotations {
+ saflux:value .
+   // a rdf:Property
+   // rdfs:label "Value"@en ;
+ saflux:label .
+   // a rdf:Property
+   // rdfs:label "Label"@en
+   // rdfs:range saflux:Label ;
+ saflux:sourceOfInformation .
+   // a saflux:Label
+   // rdfs:label "Source of information"@en ;
+ saflux:name .
+   // a saflux:Label
+   // rdfs:label "Name"@en ;
+ saflux:numeration .
+   // a saflux:Label
+   // rdfs:label "Numeration"@en ;
+ saflux:title .
+   // a saflux:Label
+   // rdfs:label "Title"@en ;
+ saflux:alternativeName .
+  // a saflux:Label
+  // rdfs:label "Alternative name"@en ;
+ saflux:alternativeNumeration .
+  // a saflux:Label
+  // rdfs:label "Alternative numeration"@en ;
+ saflux:alternativeTitle .
+  // a saflux:Label
+  // rdfs:label "Alternative title"@en ;
+ saflux:gender .
+  // a saflux:Label
+  // rdfs:label "Gender"@en ;
+ saflux:profession .
+  // a saflux:Label
+  // rdfs:label "Profession"@en ;
+ saflux:beginningDate .
+  // a saflux:Label
+  // rdfs:label "Beginning date"@en ;
+ saflux:endDate .
+  // a saflux:Label
+  // rdfs:label "End date"@en ;
+ saflux:endDate .
+  // a saflux:Label
+  // rdfs:label "End date"@en ;
+ saflux:id .
+  // a saflux:Label
+  // rdfs:label "ID"@en ;
+ saflux:idSource .
+  // a saflux:Label
+  // rdfs:label "ID Source"@en ;
+ saflux:Label .
+  // a rdf:Class ;
+ saflux:NameType .
+  // a rdfs:Class ;
+ saflux:direct .
+  // a saflux:NameType ;
+ saflux:indirect .
+  // a saflux:NameType ;
+}
