@@ -21,12 +21,12 @@ prefix xsd:  <http://www.w3.org/2001/XMLSchema#>
 :e1_external_id rdf:type                        crm:E42_Identifier ;
                 afl:label                       afl:id    ;
                 crm:P2_has_type                 :idType1        ;
-                afl:value                       "152240"        .
+                afl:value                       afl:ISNI        .
 
 :idType1        rdf:type                        crm:E55_Type ;
                 afl:label                       afl:idSource ;
                 crm:P71_is_listed_in            :listIds     ;
-                afl:value                       "SSMN"       .
+                afl:value                       afl:Getty       .
 
 :listIds        rdf:type                        crm:E32_Authority_document ;
                 rdfs:label                      "authority_file" .
@@ -37,7 +37,7 @@ prefix xsd:  <http://www.w3.org/2001/XMLSchema#>
 
 :e1_internal_id  rdf:type                         crm:E42_Identifier ;
                  rdfs:label                       "AFL_identifier"   ;
-                 afl:value                        10                 .
+                 afl:value                        afl:LU-BNL                .
 
 :male            rdf:type                         crm:E55_Type ;
                  afl:label                        afl:gender   ;

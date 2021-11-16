@@ -1,1 +1,1 @@
-validate -x ../shex/rules_1.0.3.shex -d examplesFromSAF.ttl -n http://example.org/e1 -s http://data.culture.lu/ns/saf/Person
+validate -x ../shex/rules_1.0.4.shex -d examplesFromSAF.ttl -n http://example.org/e1 -s http://data.culture.lu/ns/saf/Person
