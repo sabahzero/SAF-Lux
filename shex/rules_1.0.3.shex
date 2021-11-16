@@ -1,6 +1,4 @@
 # CHANGE LOG
-# 2021-11-16 ADDED CL7 External standarrd identifiers (ISNI, VIAF, GND, WikiData, Getty)
-# 2021-11-16 Added CL8 internal standard identifiers (ISIL CODES)
 # 2021-11-12 Added CL6 Type of source, closed list for primary or secondary source
 # 2021-09-27 Replaced afl alias by saflux for consistency with examples
 # 2021-09-20 Embedded labels as shape references so the possible values can be validated also
@@ -136,25 +134,6 @@ saflux:CL6_TypeOfSource [
   saflux:SecondarySource  # Secondary Source
 ]
 
-saflux:CL7_ExternalStandardIdentifier [
-  saflux:ISNI
-  saflux:VIAF
-  saflux:GND
-  saflux:WikiData
-  saflux:Getty
-]
-
-saflux:CL8_InternalStandardIdentifier [
-  saflux:LU-BNL
-  saflux:LU-SSMN #Assumed
-  saflux:LU-MNHA
-  saflux:LU-MNHN #Assumed
-  saflux:LU-CNL
-  saflux:LU-CNA
-  saflux:LU-CNRA #Assumed
-  saflux:LU-ANLUX
-]
-
 saflux:Name {
   rdf:type        [ crm:E90_Symbolic_Object ];
   saflux:label    @saflux:nameLabel ;
@@ -280,7 +259,7 @@ saflux:ExternalStandardIdentifier {
  crm:P2_has_type {
    rdf:type  [ crm:E55_Type ] ;
    saflux:label @saflux:idSourceLabel ;
-   saflux:value @saflux:CL7_ExternalStandardIdentifier
+   saflux:value .   # Coded,  open controlled list
  } ;
  saflux:value .
 }
@@ -289,7 +268,7 @@ saflux:InternalStandardIdentifier {
   rdf:type [ crm:E89_Propositional_object ] ;
   crm:P48_has_prefered_identifier {
     rdf:type [  crm:E42_Identifier ]  ;
-    saflux:value @saflux:CL8_InternalStandardIdentifier
+    saflux:value .
   } ;
 }
 
