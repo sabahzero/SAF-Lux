@@ -1,4 +1,5 @@
 # CHANGE LOG
+# 2021-11-16 ADDED CL7 External standarrd identifiers (ISNI, VIAF, GND, WikiData, Getty)
 # 2021-11-16 Added CL8 internal standard identifiers (ISIL CODES)
 # 2021-11-12 Added CL6 Type of source, closed list for primary or secondary source
 # 2021-09-27 Replaced afl alias by saflux for consistency with examples
@@ -133,6 +134,14 @@ saflux:CL4_Gender [
 saflux:CL6_TypeOfSource [
   saflux:PrimarySource    # Primary Source
   saflux:SecondarySource  # Secondary Source
+]
+
+saflux:CL7_ExternalStandardIdentifier [
+  saflux:ISNI
+  saflux:VIAF
+  saflux:GND
+  saflux:WikiData
+  saflux:Getty
 ]
 
 saflux:CL8_InternalStandardIdentifier [
@@ -271,7 +280,7 @@ saflux:ExternalStandardIdentifier {
  crm:P2_has_type {
    rdf:type  [ crm:E55_Type ] ;
    saflux:label @saflux:idSourceLabel ;
-   saflux:value .   # Coded,  open controlled list
+   saflux:value saflux:CL7_ExternalStandardIdentifier
  } ;
  saflux:value .
 }
