@@ -40,18 +40,3 @@ for index, row in df2.iterrows():
         except Exception as e: 
             print("error", e)
             continue
-
-propertyID = dict()
-## TODO adapt prefix namespaces to align with local wikibase at SAFLux
-query = "PREFIX wdt: <http://{}.wiki.opencura.com/prop/direct/> SELECT ?item ?label WHERE {{?item rdfs:label ?label }}".format(wbstack)
-for index, row in wdi_core.WDItemEngine.execute_sparql_query(query, as_dataframe = True, endpoint=sparql).iterrows():
-    propertyID[row["label"]] =row["item"].replace(entityUri, "")
-
-missing_classes = ['R8 consists of', "E13 Attribute assignement", 'E52 Time-span', 'P48 has prefered identifier', 'P107 has current or former member of']
-for missing_class in missing_classes:
-    statements=[]
-    statements.append(wdi_core.WDItemID(value=qid["Class"], prop_nr=propertyID["instance of"]))
-    statements.append(wdi_core.WDUrl(value="http://erlangen-crm.org/current/"+ missing_class.replace(" ", "_"), prop_nr=propertyID['exact match']))
-    item = localEntityEngine(new_item=True, data=statements)
-    item.set_label(missing_class , lang="en")
-    print(item.write(login))
